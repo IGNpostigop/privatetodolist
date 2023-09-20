@@ -5,6 +5,7 @@ let tasks = [];
 const firebaseConfig = {
     apiKey: "AIzaSyCIzlvLRjBi-HIwc_UsgOu36PV3DJ0bB3M",
     authDomain: "privatetodolist-a9e6d.firebaseapp.com",
+    databaseURL:"https://privatetodolist-a9e6d-default-rtdb.firebaseio.com/",
     projectId: "privatetodolist-a9e6d",
     storageBucket: "privatetodolist-a9e6d.appspot.com",
     messagingSenderId: "558228158361",
