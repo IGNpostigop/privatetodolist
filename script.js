@@ -1,18 +1,36 @@
 // Arreglo para almacenar las tareas
 let tasks = [];
 
-// Función para cargar las tareas desde el almacenamiento local al cargar la página
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCIzlvLRjBi-HIwc_UsgOu36PV3DJ0bB3M",
+    authDomain: "privatetodolist-a9e6d.firebaseapp.com",
+    projectId: "privatetodolist-a9e6d",
+    storageBucket: "privatetodolist-a9e6d.appspot.com",
+    messagingSenderId: "558228158361",
+    appId: "1:558228158361:web:4d2962c69584b25ba68508",
+    measurementId: "G-VDRSBEZJNS"
+};
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const tasksRef = database.ref("tasks");
+
+// Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-        tasks = JSON.parse(storedTasks);
+    tasksRef.on("value", (snapshot) => {
+        tasks = [];
+        snapshot.forEach((childSnapshot) => {
+            tasks.push(childSnapshot.val());
+        });
         updateTaskList();
-    }
+    });
 }
 
-// Función para guardar las tareas en el almacenamiento local
+// Función para guardar las tareas en Firebase
 function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    tasksRef.set(tasks);
 }
 
 function addTask() {
@@ -20,10 +38,8 @@ function addTask() {
     const taskText = taskInput.value.trim();
 
     if (taskText !== "") {
-        // Agregar la tarea al arreglo
+        // Agregar la tarea a Firebase
         tasks.push(taskText);
-
-        // Guardar las tareas en el almacenamiento local
         saveTasks();
 
         // Actualizar la lista de tareas
@@ -65,8 +81,6 @@ function updateTaskList() {
 function deleteTask(index) {
     // Eliminar la tarea del arreglo
     tasks.splice(index, 1);
-
-    // Guardar las tareas actualizadas en el almacenamiento local
     saveTasks();
 
     // Actualizar la lista de tareas
@@ -78,8 +92,6 @@ function editTask(index) {
     
     if (newTaskText !== null) {
         tasks[index] = newTaskText;
-
-        // Guardar las tareas actualizadas en el almacenamiento local
         saveTasks();
 
         // Actualizar la lista de tareas
@@ -87,5 +99,5 @@ function editTask(index) {
     }
 }
 
-// Llamar a loadTasks al cargar la página para cargar las tareas existentes desde el almacenamiento local
+// Llamar a loadTasks al cargar la página para cargar las tareas existentes desde Firebase
 loadTasks();
