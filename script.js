@@ -17,6 +17,23 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const tasksRef = database.ref("tasks");
 
+document.addEventListener("DOMContentLoaded", function () {
+    const taskInput = document.getElementById("taskInput");
+    const addTaskButton = document.getElementById("addTaskButton");
+
+    // Agregar tarea al presionar Enter
+    taskInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+    // Agregar tarea al hacer clic en el botón
+    addTaskButton.addEventListener("click", addTask);
+
+    // Resto del código como antes...
+});
+
 // Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
     tasksRef.on("value", (snapshot) => {
