@@ -12,14 +12,14 @@ const firebaseConfig = {
     appId: "1:558228158361:web:4d2962c69584b25ba68508",
     measurementId: "G-VDRSBEZJNS"
 };
-
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const tasksRef = database.ref("tasks");
+// Inicializar Firebase (si lo usas)
+// firebase.initializeApp(firebaseConfig);
+// const database = firebase.database();
+// const tasksRef = database.ref("tasks");
 
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
+    const colorSelect = document.getElementById("colorSelect");
     const addTaskButton = document.getElementById("addTaskButton");
 
     // Agregar tarea al presionar Enter
@@ -37,28 +37,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
-    tasksRef.on("value", (snapshot) => {
-        tasks = [];
-        snapshot.forEach((childSnapshot) => {
-            tasks.push(childSnapshot.val());
-        });
-        updateTaskList();
-    });
+    // tasksRef.on("value", (snapshot) => {
+    //     tasks = [];
+    //     snapshot.forEach((childSnapshot) => {
+    //         tasks.push(childSnapshot.val());
+    //     });
+    //     updateTaskList();
+    // });
 }
 
 // Función para guardar las tareas en Firebase
 function saveTasks() {
-    tasksRef.set(tasks);
+    // tasksRef.set(tasks);
 }
 
 function addTask() {
     const taskInput = document.getElementById("taskInput");
+    const colorSelect = document.getElementById("colorSelect");
     const taskText = taskInput.value.trim();
+    const selectedColor = colorSelect.value;
 
     if (taskText !== "") {
-        // Agregar la tarea a Firebase
-        tasks.push(taskText);
-        saveTasks();
+        // Agregar la tarea al arreglo
+        tasks.push({ text: taskText, color: selectedColor });
+
+        // Guardar las tareas (si se utiliza Firebase)
+        // saveTasks();
 
         // Actualizar la lista de tareas
         updateTaskList();
@@ -74,11 +78,14 @@ function updateTaskList() {
 
     // Recorrer el arreglo de tareas y mostrarlas en la lista
     for (let i = 0; i < tasks.length; i++) {
-        const taskText = tasks[i];
+        const task = tasks[i];
 
         // Crear elementos HTML para mostrar la tarea
         const li = document.createElement("li");
-        li.textContent = taskText;
+        li.textContent = task.text;
+
+        // Asignar el color de fondo seleccionado
+        li.style.backgroundColor = task.color;
 
         // Crear botones para eliminar y editar la tarea
         const deleteButton = document.createElement("button");
@@ -99,18 +106,16 @@ function updateTaskList() {
 function deleteTask(index) {
     // Eliminar la tarea del arreglo
     tasks.splice(index, 1);
-    saveTasks();
 
     // Actualizar la lista de tareas
     updateTaskList();
 }
 
 function editTask(index) {
-    const newTaskText = prompt("Editar tarea:", tasks[index]);
-    
+    const newTaskText = prompt("Editar tarea:", tasks[index].text);
+
     if (newTaskText !== null) {
-        tasks[index] = newTaskText;
-        saveTasks();
+        tasks[index].text = newTaskText;
 
         // Actualizar la lista de tareas
         updateTaskList();

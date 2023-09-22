@@ -1,24 +1,24 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #333; /* Cambia el color de fondo a uno más oscuro */
+    background-color: #333;
     margin: 0;
     padding: 0;
-    color: #fff; /* Cambia el color del texto a blanco */
+    color: #fff;
 }
 
 .container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
 
 h1 {
     text-align: center;
-    color: #007bff; /* Cambia el color del título a azul */
+    color: #007bff;
 }
 
 /* Estilos para la lista de tareas */
@@ -34,8 +34,17 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    color: #333; /* Cambia el color del texto de entrada a oscuro */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 button#addTaskButton {
@@ -56,40 +65,14 @@ ul {
 li {
     margin: 10px 0;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
     border: 1px solid #ccc;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #333; /* Cambia el color del texto del elemento de lista a oscuro */
+    color: #333;
 }
 
 button.delete-button,
 button.edit-button {
-    padding: 5px 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-button.edit-button {
-    background-color: #ffc107;
-    margin-right: 10px;
-}
-
-/* Estilos adicionales para dispositivos móviles */
-@media screen and (max-width: 480px) {
-    .container {
-        max-width: 100%;
-        padding: 10px;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        margin-right: 0;
-    }
-}
+    padding
