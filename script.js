@@ -106,18 +106,27 @@ function updateTaskList() {
         // Asignar el color de fondo seleccionado
         li.style.backgroundColor = task.color;
 
+        // Crear un contenedor para los botones "Eliminar" y "Editar"
+        const buttonContainer = document.createElement("div");
+        buttonContainer.classList.add("button-container");
+
         // Crear botones para eliminar y editar la tarea
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Eliminar";
+        deleteButton.classList.add("delete-button");
         deleteButton.addEventListener("click", () => deleteTask(i));
 
         const editButton = document.createElement("button");
         editButton.textContent = "Editar";
+        editButton.classList.add("edit-button");
         editButton.addEventListener("click", () => editTask(i));
 
+        // Agregar botones al contenedor
+        buttonContainer.appendChild(deleteButton);
+        buttonContainer.appendChild(editButton);
+
         // Agregar elementos a la lista
-        li.appendChild(deleteButton);
-        li.appendChild(editButton);
+        li.appendChild(buttonContainer);
         taskList.appendChild(li);
     }
 }
