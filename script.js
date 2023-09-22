@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
-    // tasksRef.on("value", (snapshot) => {
-    //     tasks = [];
-    //     snapshot.forEach((childSnapshot) => {
-    //         tasks.push(childSnapshot.val());
-    //     });
-    //     updateTaskList();
-    // });
+     tasksRef.on("value", (snapshot) => {
+         tasks = [];
+         snapshot.forEach((childSnapshot) => {
+             tasks.push(childSnapshot.val());
+         });
+         updateTaskList();
+     });
 }
 
 // Función para guardar las tareas en Firebase
