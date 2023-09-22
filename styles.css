@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     background-color: #333; /* Cambia el color de fondo a uno más oscuro */
@@ -20,6 +21,7 @@ h1 {
     color: #007bff; /* Cambia el color del título a azul */
 }
 
+/* Estilos para la lista de tareas */
 #app {
     text-align: center;
     margin-top: 20px;
@@ -79,8 +81,8 @@ button.edit-button {
     margin-right: 10px;
 }
 
+/* Estilos adicionales para dispositivos móviles */
 @media screen and (max-width: 480px) {
-    /* Estilos adicionales para dispositivos móviles */
     .container {
         max-width: 100%;
         padding: 10px;
