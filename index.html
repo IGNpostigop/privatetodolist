@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Importa tu hoja de estilos CSS -->
 </head>
 <body>
-    <h1>Lista de Tareas</h1>
-    <div id="app">
-        <input type="text" id="taskInput" placeholder="Agregar una tarea">
-        <button id="addTaskButton">Agregar</button>
+    <div class="container">
+        <h1>Lista de Tareas</h1>
+        <div id="app">
+            <input type="text" id="taskInput" placeholder="Agregar una tarea">
+            <button id="addTaskButton">Agregar</button>
+        </div>
         <ul id="taskList"></ul>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>    
-    <script src="script.js"></script>
+
+    <!-- Botón para abrir la página de notas de colores -->
+    <button id="openColorNotesButton" onclick="window.location.href='colors.html'">Abrir Notas de Colores</button>
+
+    <script src="script.js"></script> <!-- Importa tu archivo JavaScript -->
 </body>
 </html>
