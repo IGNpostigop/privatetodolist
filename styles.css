@@ -70,9 +70,33 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff;
+    color: #fff; /* Cambia el color del texto de la tarea a blanco */
 }
 
 button.delete-button,
 button.edit-button {
-    padding
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button.edit-button {
+    margin-right: 10px;
+}
+
+/* Estilos adicionales para dispositivos móviles */
+@media screen and (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        margin-right: 0;
+    }
+}

@@ -107,7 +107,10 @@ function deleteTask(index) {
     // Eliminar la tarea del arreglo
     tasks.splice(index, 1);
 
-    // Actualizar la lista de tareas
+    // Eliminar la tarea de Firebase
+    tasksRef.set(tasks); // Esto actualizará la lista de tareas en Firebase sin la tarea eliminada
+
+     // Actualizar la lista de tareas
     updateTaskList();
 }
 
