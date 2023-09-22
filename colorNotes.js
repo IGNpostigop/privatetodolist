@@ -25,10 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return color;
     }
 
-    // Agregar una nota de color al cargar la página (puedes eliminar esto si no deseas una nota inicial)
-    createColorNote();
-
     // Agregar evento al botón para crear una nueva nota de color
     const createColorButton = document.getElementById("createColorButton");
-    createColorButton.addEventListener("click", createColorNote);
+    if (createColorButton) {
+        createColorButton.addEventListener("click", createColorNote);
+    }
 });
