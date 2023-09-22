@@ -70,7 +70,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #333;
+    color: #fff;
 }
 
 button.delete-button,
