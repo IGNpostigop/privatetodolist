@@ -5,17 +5,18 @@ let tasks = [];
 const firebaseConfig = {
     apiKey: "AIzaSyCIzlvLRjBi-HIwc_UsgOu36PV3DJ0bB3M",
     authDomain: "privatetodolist-a9e6d.firebaseapp.com",
-    databaseURL:"https://privatetodolist-a9e6d-default-rtdb.firebaseio.com/",
+    databaseURL: "https://privatetodolist-a9e6d-default-rtdb.firebaseio.com/",
     projectId: "privatetodolist-a9e6d",
     storageBucket: "privatetodolist-a9e6d.appspot.com",
     messagingSenderId: "558228158361",
     appId: "1:558228158361:web:4d2962c69584b25ba68508",
     measurementId: "G-VDRSBEZJNS"
 };
-// Inicializar Firebase (si lo usas)
- firebase.initializeApp(firebaseConfig);
- const database = firebase.database();
- const tasksRef = database.ref("tasks");
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const tasksRef = database.ref("tasks");
 
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
@@ -33,44 +34,40 @@ document.addEventListener("DOMContentLoaded", function () {
     addTaskButton.addEventListener("click", addTask);
 
     // Resto del código como antes...
+
+    // Llamar a Sortable para hacer la lista ordenable
+    const taskList = document.getElementById("taskList");
+    const sortable = new Sortable(taskList, {
+        animation: 150,
+        onEnd: (evt) => {
+            // Obtener el elemento que se movió
+            const movedTask = tasks.splice(evt.oldIndex, 1)[0];
+            // Insertar el elemento en su nueva posición
+            tasks.splice(evt.newIndex, 0, movedTask);
+
+            // Actualizar el arreglo de tareas con el nuevo orden
+            saveTasks();
+
+            // No es necesario llamar a updateTaskList aquí,
+            // ya que la lista se actualizará automáticamente
+        },
+    });
 });
-
- // Llamar a Sortable para hacer la lista ordenable
- const taskList = document.getElementById("taskList");
- new Sortable(taskList, {
-     animation: 150, // Duración de la animación al arrastrar elementos
-     onEnd: () => {
-         // Obtener el nuevo orden de las tareas después de arrastrar
-         const newOrder = [];
-         const liElements = taskList.getElementsByTagName('li');
-         for (const li of liElements) {
-             const taskText = li.textContent;
-             const taskColor = li.style.backgroundColor;
-             newOrder.push({ text: taskText, color: taskColor });
-         }
-
-         // Actualizar el arreglo de tareas con el nuevo orden
-         tasks = newOrder;
-
-         // Guardar las tareas en Firebase (si se utiliza)
-         saveTasks();
-     }
- });
 
 // Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
-     tasksRef.on("value", (snapshot) => {
-         tasks = [];
-         snapshot.forEach((childSnapshot) => {
-             tasks.push(childSnapshot.val());
-         });
-         updateTaskList();
-     });
+    tasksRef.on("value", (snapshot) => {
+        tasks = [];
+        snapshot.forEach((childSnapshot) => {
+            tasks.push(childSnapshot.val());
+        });
+        updateTaskList();
+    });
 }
 
 // Función para guardar las tareas en Firebase
 function saveTasks() {
-     tasksRef.set(tasks);
+    tasksRef.set(tasks);
 }
 
 function addTask() {
@@ -83,8 +80,8 @@ function addTask() {
         // Agregar la tarea al arreglo
         tasks.push({ text: taskText, color: selectedColor });
 
-        // Guardar las tareas (si se utiliza Firebase)
-         saveTasks();
+        // Guardar las tareas en Firebase (si se utiliza Firebase)
+        saveTasks();
 
         // Actualizar la lista de tareas
         updateTaskList();
@@ -126,13 +123,13 @@ function updateTaskList() {
 }
 
 function deleteTask(index) {
-    // Eliminar la tarea del arreglo
+    // Eliminar la tarea del arreglo local
     tasks.splice(index, 1);
 
     // Eliminar la tarea de Firebase
     tasksRef.set(tasks); // Esto actualizará la lista de tareas en Firebase sin la tarea eliminada
 
-     // Actualizar la lista de tareas
+    // Actualizar la lista de tareas
     updateTaskList();
 }
 
