@@ -13,9 +13,9 @@ const firebaseConfig = {
     measurementId: "G-VDRSBEZJNS"
 };
 // Inicializar Firebase (si lo usas)
-// firebase.initializeApp(firebaseConfig);
-// const database = firebase.database();
-// const tasksRef = database.ref("tasks");
+ firebase.initializeApp(firebaseConfig);
+ const database = firebase.database();
+ const tasksRef = database.ref("tasks");
 
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
@@ -48,7 +48,7 @@ function loadTasks() {
 
 // Función para guardar las tareas en Firebase
 function saveTasks() {
-    // tasksRef.set(tasks);
+     tasksRef.set(tasks);
 }
 
 function addTask() {
@@ -62,7 +62,7 @@ function addTask() {
         tasks.push({ text: taskText, color: selectedColor });
 
         // Guardar las tareas (si se utiliza Firebase)
-        // saveTasks();
+         saveTasks();
 
         // Actualizar la lista de tareas
         updateTaskList();
