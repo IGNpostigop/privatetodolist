@@ -73,19 +73,26 @@ li {
     color: #fff; /* Cambia el color del texto de la tarea a blanco */
 }
 
-button.delete-button,
-button.edit-button {
+button.delete-button {
     padding: 5px 10px;
     background-color: #dc3545;
+    margin-right: 10px;
     color: black; /* Cambia el color del texto a negro */
     border: none;
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
+    
 
 button.edit-button {
     background-color: #ffc107;
+    padding: 5px 10px;
     margin-right: 10px;
+    color: black; /* Cambia el color del texto a negro */
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
 
 /* Estilos adicionales para dispositivos móviles */
 @media screen and (max-width: 480px) {
