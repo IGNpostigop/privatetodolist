@@ -35,6 +35,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Resto del código como antes...
 });
 
+ // Llamar a Sortable para hacer la lista ordenable
+ const taskList = document.getElementById("taskList");
+ new Sortable(taskList, {
+     animation: 150, // Duración de la animación al arrastrar elementos
+     onEnd: () => {
+         // Obtener el nuevo orden de las tareas después de arrastrar
+         const newOrder = [];
+         const liElements = taskList.getElementsByTagName('li');
+         for (const li of liElements) {
+             const taskText = li.textContent;
+             const taskColor = li.style.backgroundColor;
+             newOrder.push({ text: taskText, color: taskColor });
+         }
+
+         // Actualizar el arreglo de tareas con el nuevo orden
+         tasks = newOrder;
+
+         // Guardar las tareas en Firebase (si se utiliza)
+         saveTasks();
+     }
+ });
+
 // Función para cargar las tareas desde Firebase al cargar la página
 function loadTasks() {
      tasksRef.on("value", (snapshot) => {
