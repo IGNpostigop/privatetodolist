@@ -108,4 +108,56 @@ button.edit-button {
         width: 100%;
         margin-right: 0;
     }
+
+    /* Agrega estos estilos para el contenedor de lista de tareas */
+    #taskListContainer {
+        max-height: 300px; /* Ajusta la altura máxima según sea necesario */
+        overflow-y: auto; /* Activa la barra de desplazamiento vertical si es necesario */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        margin-top: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0; /* Añade este estilo para quitar el margen predeterminado en el ul */
+    }
+
+    li {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+    }
+
+    /* Estilos adicionales para los botones de eliminar y editar */
+    button.delete-button {
+        padding: 5px 10px;
+        background-color: #dc3545;
+        margin-right: 10px;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    button.edit-button {
+        background-color: #ffc107;
+        padding: 5px 10px;
+        margin-right: 10px;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
 }

@@ -16,7 +16,10 @@
             <option value="blue">Azul</option>
         </select>
         <button id="addTaskButton">Agregar</button>
-        <ul id="taskList"></ul>
+        <!-- Modificación: Contenedor para la lista de tareas con capacidad de desplazamiento -->
+        <div id="taskListContainer">
+            <ul id="taskList"></ul>
+        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database-compat.js"></script>   

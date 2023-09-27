@@ -147,7 +147,7 @@ function editTask(index) {
 
     if (newTaskText !== null) {
         tasks[index].text = newTaskText;
-         // Guardar las tareas actualizadas en Firebase (si se utiliza Firebase)
+         // Guardar las tareas actualizadas en Firebase 
          saveTasks();
         // Actualizar la lista de tareas
         updateTaskList();
