@@ -109,13 +109,15 @@ button.edit-button {
         margin-right: 0;
     }
 
-    /* Agrega estos estilos para el contenedor de lista de tareas */
+    /* Estilos adicionales para el contenedor de lista de tareas en dispositivos móviles */
     #taskListContainer {
-        max-height: 300px; /* Ajusta la altura máxima según sea necesario */
-        overflow-y: auto; /* Activa la barra de desplazamiento vertical si es necesario */
+        max-height: calc(100vh - 200px); /* Ajusta la altura según tus necesidades */
+        overflow-y: auto;
+        scrollbar-width: auto; /* Ancho de la barra de desplazamiento */
+        scrollbar-color: #007bff rgba(0, 0, 0, 0.1); /* Colores de la barra de desplazamiento */
         border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(146, 146, 146, 0.9);
         padding: 10px;
         margin-top: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -138,26 +140,19 @@ button.edit-button {
         color: #fff;
     }
 
-    /* Estilos adicionales para los botones de eliminar y editar */
-    button.delete-button {
-        padding: 5px 10px;
-        background-color: #dc3545;
-        margin-right: 10px;
-        color: black;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
+    /* Establece el ancho de la barra de desplazamiento en navegadores WebKit (como Chrome y Safari) */
+    #taskListContainer::-webkit-scrollbar {
+        width: 10px; /* Ajusta el ancho según sea necesario */
     }
 
-    button.edit-button {
-        background-color: #ffc107;
-        padding: 5px 10px;
-        margin-right: 10px;
-        color: black;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
+    /* Establece el color de fondo de la barra de desplazamiento en navegadores WebKit */
+    #taskListContainer::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.1); /* Color de fondo de la barra de desplazamiento */
+    }
+
+    /* Establece el color de la barra de desplazamiento en navegadores WebKit */
+    #taskListContainer::-webkit-scrollbar-thumb {
+        background-color: #007bff; /* Color de la barra de desplazamiento */
+        border-radius: 5px; /* Borde redondeado de la barra de desplazamiento */
     }
 }
