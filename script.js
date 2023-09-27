@@ -132,14 +132,18 @@ function updateTaskList() {
 }
 
 function deleteTask(index) {
-    // Eliminar la tarea del arreglo local
-    tasks.splice(index, 1);
+    // Confirmación antes de borrar la tarea
+    const confirmation = confirm("¿Seguro que quieres borrar esta tarea?");
+    if (confirmation) {
+        // Eliminar la tarea del arreglo local
+        tasks.splice(index, 1);
 
-    // Eliminar la tarea de Firebase
-    tasksRef.set(tasks); // Esto actualizará la lista de tareas en Firebase sin la tarea eliminada
+        // Eliminar la tarea de Firebase
+        tasksRef.set(tasks); // Esto actualizará la lista de tareas en Firebase sin la tarea eliminada
 
-    // Actualizar la lista de tareas
-    updateTaskList();
+        // Actualizar la lista de tareas
+        updateTaskList();
+    }
 }
 
 function editTask(index) {
@@ -147,8 +151,8 @@ function editTask(index) {
 
     if (newTaskText !== null) {
         tasks[index].text = newTaskText;
-         // Guardar las tareas actualizadas en Firebase 
-         saveTasks();
+        // Guardar las tareas actualizadas en Firebase 
+        saveTasks();
         // Actualizar la lista de tareas
         updateTaskList();
     }
